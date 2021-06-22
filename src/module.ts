@@ -4,6 +4,7 @@ const path = require('path')
 export interface Options {
   apiKey: string;
   serviceDomain: string;
+  mode?: 'server' | 'client';
 }
 
 interface Package {
@@ -22,6 +23,7 @@ const module: ModuleWithMeta<Options> = function(this, options) {
   this.addPlugin({
     src: path.resolve(__dirname, 'plugin.js'),
     fileName: 'microcms.js',
+    mode: options.mode,
     options,
   });
 };
