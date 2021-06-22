@@ -3,6 +3,7 @@ const path = require('path')
 
 export interface Options {
   apiKey: string;
+  serviceDomain: string;
 }
 
 interface Package {
