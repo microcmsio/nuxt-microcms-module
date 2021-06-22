@@ -1,10 +1,15 @@
 import { Module } from '@nuxt/types'
 const path = require('path')
 
-export interface Options {
+export interface Config {
   apiKey: string;
   serviceDomain: string;
+}
+
+export interface Options {
+  fileName?: string;
   mode?: 'server' | 'client';
+  options: Config;
 }
 
 interface Package {
@@ -15,15 +20,16 @@ interface Package {
   license: string;
 }
 
-interface ModuleWithMeta<T> extends Module<T> {
+export interface ModuleWithMeta<T> extends Module<T> {
   meta: Package;
 }
 
-const module: ModuleWithMeta<Options> = function(this, options) {
+const module: ModuleWithMeta<Options> = function(this, _options) {
+  const { fileName, mode, options } = _options;
   this.addPlugin({
     src: path.resolve(__dirname, 'plugin.js'),
-    fileName: 'microcms.js',
-    mode: options.mode,
+    fileName: fileName || 'microcms.js',
+    mode,
     options,
   });
 };
