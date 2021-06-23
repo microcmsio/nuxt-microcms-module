@@ -24,17 +24,17 @@ export interface ModuleWithMeta<T> extends Module<T> {
   meta: Package;
 }
 
-const module: ModuleWithMeta<Options> = function(this, moduleOptions) {
-  const _options = { ...this.options.microcms, ...moduleOptions };
-  const { fileName, mode, options } = _options;
+const module: ModuleWithMeta<Options> = function (this, moduleOptions) {
+  const _options = { ...this.options.microcms, ...moduleOptions }
+  const { fileName, mode, options } = _options
   this.addPlugin({
     src: path.resolve(__dirname, 'plugin.js'),
     fileName: fileName || 'microcms.js',
     mode,
-    options,
-  });
-};
+    options
+  })
+}
 
 module.meta = require('../package.json')
 
-export default module;
+export default module

@@ -13,6 +13,8 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
+    "lint": "eslint --ext .ts,.js,.vue ./src",
+    "lint:fix": "eslint --fix --ext .ts,.js,.vue ./src",
     "build": "tsc"
   },
   "repository": {
@@ -27,6 +29,9 @@
   "homepage": "https://github.com/wantainc/nuxt-microcms-module#readme",
   "devDependencies": {
     "@nuxt/types": "https://gitpkg.now.sh/nuxt/nuxt.js/packages/types?dev",
+    "@nuxtjs/eslint-config-typescript": "^6.0.1",
+    "@typescript-eslint/parser": "^4.28.0",
+    "eslint": "^7.29.0",
     "typescript": "^4.3.4"
   },
   "dependencies": {
