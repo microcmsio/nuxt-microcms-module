@@ -26,7 +26,7 @@ export default {
 ```
 
 ### Hot to use
-This package uses microcms-js-sdk.  
+This package uses [microcms-js-sdk](https://github.com/wantainc/microcms-js-sdk).  
 You can get microCMS client (`$microcms`) from `context`.  
 Please see the URL below for details.  
 https://github.com/wantainc/microcms-js-sdk#how-to-use
