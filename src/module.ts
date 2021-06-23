@@ -8,7 +8,7 @@ export interface Config {
 
 export interface Options {
   fileName?: string;
-  mode?: 'server' | 'client';
+  mode?: 'server' | 'client' | 'all';
   options: Config;
 }
 
@@ -24,7 +24,8 @@ export interface ModuleWithMeta<T> extends Module<T> {
   meta: Package;
 }
 
-const module: ModuleWithMeta<Options> = function(this, _options) {
+const module: ModuleWithMeta<Options> = function(this, moduleOptions) {
+  const _options = { ...this.options.microcms, ...moduleOptions };
   const { fileName, mode, options } = _options;
   this.addPlugin({
     src: path.resolve(__dirname, 'plugin.js'),
