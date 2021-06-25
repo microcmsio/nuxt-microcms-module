@@ -19,14 +19,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/wantainc/nuxt-microcms-module.git"
+    "url": "git+https://github.com/microcmsio/nuxt-microcms-module.git"
   },
-  "author": "Wanta Inc",
+  "author": "shibe97",
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/wantainc/nuxt-microcms-module/issues"
+    "url": "https://github.com/microcmsio/nuxt-microcms-module/issues"
   },
-  "homepage": "https://github.com/wantainc/nuxt-microcms-module#readme",
+  "homepage": "https://github.com/microcmsio/nuxt-microcms-module#readme",
   "devDependencies": {
     "@nuxt/types": "https://gitpkg.now.sh/nuxt/nuxt.js/packages/types?dev",
     "@nuxtjs/eslint-config-typescript": "^6.0.1",
