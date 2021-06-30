@@ -1,11 +1,11 @@
-import { Plugin } from '@nuxt/types'
-import { createClient } from 'microcms-js-sdk'
+import { Plugin } from '@nuxt/types';
+import { createClient } from 'microcms-js-sdk';
 
 const plugin: Plugin = function (_, inject) {
-  const _options = JSON.parse('<%= serialize(options) %>')
-  const client = createClient(_options)
+  const _options = JSON.parse('<%= serialize(options) %>');
+  const client = createClient(_options);
 
-  inject('microcms', client)
-}
+  inject('microcms', client);
+};
 
-export default plugin
+export default plugin;

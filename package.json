@@ -28,7 +28,7 @@
   },
   "homepage": "https://github.com/microcmsio/nuxt-microcms-module#readme",
   "devDependencies": {
-    "@nuxt/types": "https://gitpkg.now.sh/nuxt/nuxt.js/packages/types?dev",
+    "@nuxt/types": "^2.15.7",
     "@nuxtjs/eslint-config-typescript": "^6.0.1",
     "@typescript-eslint/parser": "^4.28.0",
     "eslint": "^7.29.0",
