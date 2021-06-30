@@ -36,8 +36,8 @@ Your api-key.
 It can be obtained from the service settings. 
 
 #### mode
-`String` (can be `client` or `server`)  
-If defined, the file will be included only on the respective (client or server) side.
+`String` (can be `client` or `server` or `all`)  
+If defined, this module will be included only on the respective (client or server) side.
 
 ### Hot to use
 This package uses [microcms-js-sdk](https://github.com/microcmsio/microcms-js-sdk).  
