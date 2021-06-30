@@ -21,9 +21,23 @@ export default {
       serviceDomain: "YOUR_DOMAIN", // YOUR_DOMAIN is the XXXX part of XXXX.microcms.io
       apiKey: "YOUR_API_KEY",
     },
+    mode: process.env.NODE_ENV === 'production' ? 'server' : 'all',
   },
 };
 ```
+
+#### options.serviceDomain
+`String`  
+Your service id, which is a subdomain of microCMS.
+
+#### options.apiKey
+`String`  
+Your api-key.  
+It can be obtained from the service settings. 
+
+#### mode
+`String` (can be `client` or `server`)  
+If defined, the file will be included only on the respective (client or server) side.
 
 ### Hot to use
 This package uses [microcms-js-sdk](https://github.com/microcmsio/microcms-js-sdk).  
