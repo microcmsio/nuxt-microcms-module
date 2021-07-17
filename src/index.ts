@@ -1,3 +1,3 @@
-import module from './module';
+import microcmsModule from './module';
 
-export default module;
+export default microcmsModule;
