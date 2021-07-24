@@ -1,6 +1,6 @@
 {
   "name": "nuxt-microcms-module",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "microCMS integration for Nuxt.js",
   "keywords": [
     "nuxt",
