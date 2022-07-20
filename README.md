@@ -1,4 +1,4 @@
-⚠️ Nuxt3 is not supported! Please use Nuxt2.
+⚠️ Nuxt3 is not supported. Please use Nuxt2.
 
 # nuxt-microcms-module
 [microCMS](https://microcms.io) integration for [Nuxt](https://nuxtjs.org/).
