@@ -13,7 +13,7 @@ $ npm install nuxt-microcms-module
 ### Setup
 
 ```typescript
-// nuxt.config.js
+// nuxt.config.ts
 
 export default defineNuxtConfig({
   modules: [
