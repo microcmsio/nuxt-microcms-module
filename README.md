@@ -22,7 +22,7 @@ export default defineNuxtConfig({
       {
         serviceDomain: 'YOUR_DOMAIN', // YOUR_DOMAIN is the XXXX part of XXXX.microcms.io
         apiKey: 'YOUR_API_KEY',
-        target: 'server',
+        // target: 'server',
       },
     ],
   ],
@@ -31,7 +31,7 @@ export default defineNuxtConfig({
   microCMS: {
     serviceDomain: 'YOUR_DOMAIN',
     apiKey: 'YOUR_API_KEY',
-    target: 'server',
+    // target: 'server',
   },
 });
 ```
@@ -51,9 +51,9 @@ It can be obtained from the service settings.
 
 #### target
 
-`String` (can be `client` or `server`)
+`String` (can be `server` or `all`)
 Default: `server`
-By setting this value to `client`, the api-key you set will be included in the client-side code.
+By setting this value to `all`, the api-key you set will be included in the client-side code.
 This will allow the client side to send requests to microCMS.
 If you only want to send requests to microCMS at build time or from the server side, set this value to `server` or leave it blank.
 
