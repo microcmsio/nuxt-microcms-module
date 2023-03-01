@@ -111,6 +111,8 @@ type useMicroCMSGetObject = <T>(
 </template>
 
 <script setup lang="ts">
+import type { MicroCMSImage } from 'microcms-js-sdk';
+
 type Blog = {
   title: string;
   eyecatch: MicroCMSImage;
