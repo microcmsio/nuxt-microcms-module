@@ -2,6 +2,9 @@
 
 [microCMS](https://microcms.io) integration for [Nuxt](https://nuxt.com/).
 
+Attention❗️  
+This module is intended for Nuxt version 3. If you are using version 2, please perform `npm install nuxt-microcms-module@2` and refer [here](https://github.com/microcmsio/nuxt-microcms-module/tree/v2#readme).
+
 ## Getting Started
 
 ### Install
@@ -38,28 +41,28 @@ export default defineNuxtConfig({
 
 #### serviceDomain
 
-`String`
-Required.
+`String`  
+Required.  
 Your service id, which is a subdomain of microCMS.
 
 #### apiKey
 
 `String`  
-Required.
+Required.  
 Your api-key.  
 It can be obtained from the service settings.
 
 #### target
 
-`String` (can be `server` or `all`)
-Default: `server`
-By setting this value to `all`, the api-key you set will be included in the client-side code.
-This will allow the client side to send requests to microCMS.
+`String` (can be `server` or `all`)  
+Default: `server`  
+By setting this value to `all`, the api-key you set will be included in the client-side code.  
+This will allow the client side to send requests to microCMS.  
 If you only want to send requests to microCMS at build time or from the server side, set this value to `server` or leave it blank.
 
 ### Hot to use
 
-We provide several custom hooks that can be used globally.
+We provide several custom hooks that can be used globally.  
 These are functions that internally wrap useFetch.
 
 ```typescript
