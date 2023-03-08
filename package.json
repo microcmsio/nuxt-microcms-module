@@ -1,6 +1,6 @@
 {
   "name": "nuxt-microcms-module",
-  "version": "2.0.1",
+  "version": "3.0.0",
   "description": "microCMS integration for Nuxt.js",
   "keywords": [
     "nuxt",
@@ -10,31 +10,50 @@
     "headless",
     "cms"
   ],
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
-  "scripts": {
-    "lint": "eslint --ext .ts,.js,.vue ./src",
-    "lint:fix": "eslint --fix --ext .ts,.js,.vue ./src",
-    "build": "tsc"
+  "homepage": "https://github.com/microcmsio/nuxt-microcms-module#readme",
+  "bugs": {
+    "url": "https://github.com/microcmsio/nuxt-microcms-module/issues"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/microcmsio/nuxt-microcms-module.git"
   },
-  "author": "shibe97",
   "license": "Apache-2.0",
-  "bugs": {
-    "url": "https://github.com/microcmsio/nuxt-microcms-module/issues"
+  "author": "shibe97",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/types.d.ts",
+      "import": "./dist/module.mjs",
+      "require": "./dist/module.cjs"
+    }
   },
-  "homepage": "https://github.com/microcmsio/nuxt-microcms-module#readme",
-  "devDependencies": {
-    "@nuxt/types": "^2.15.7",
-    "@nuxtjs/eslint-config-typescript": "^6.0.1",
-    "@typescript-eslint/parser": "^4.28.0",
-    "eslint": "^7.29.0",
-    "typescript": "^4.3.4"
+  "main": "./dist/module.cjs",
+  "types": "./dist/types.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "dev": "nuxi dev playground",
+    "dev:build": "nuxi build playground",
+    "dev:prepare": "nuxt-module-build --stub && nuxi prepare playground",
+    "lint": "eslint .",
+    "prepack": "nuxt-module-build",
+    "release": "yarn lint && yarn prepack && npm publish"
   },
   "dependencies": {
-    "microcms-js-sdk": "^2.0.0"
+    "@nuxt/kit": "^3.2.0",
+    "defu": "^6.1.2",
+    "microcms-js-sdk": "^2.3.2"
+  },
+  "devDependencies": {
+    "@nuxt/eslint-config": "^0.1.1",
+    "@nuxt/module-builder": "^0.2.1",
+    "@nuxt/schema": "^3.2.3",
+    "@nuxt/test-utils": "^3.2.3",
+    "@types/node": "16.18.13",
+    "eslint": "^8.35.0",
+    "eslint-config-prettier": "^8.6.0",
+    "nuxt": "^3.2.3"
   }
 }

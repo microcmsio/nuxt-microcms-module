@@ -1,7 +1,9 @@
-⚠️ Nuxt3 is not supported. Please use Nuxt2.
-
 # nuxt-microcms-module
-[microCMS](https://microcms.io) integration for [Nuxt](https://nuxtjs.org/).
+
+[microCMS](https://microcms.io) integration for [Nuxt](https://nuxt.com/).
+
+Attention❗️  
+This module is intended for Nuxt version 3. If you are using version 2, please perform `npm install nuxt-microcms-module@2` and refer [here](https://github.com/microcmsio/nuxt-microcms-module/tree/v2#readme).
 
 ## Getting Started
 
@@ -13,63 +15,116 @@ $ npm install nuxt-microcms-module
 
 ### Setup
 
-```javascript
-// nuxt.config.js
+```typescript
+// nuxt.config.ts
 
-export default {
+export default defineNuxtConfig({
+  modules: [
+    [
+      'nuxt-microcms-module',
+      {
+        serviceDomain: 'YOUR_DOMAIN', // YOUR_DOMAIN is the XXXX part of XXXX.microcms.io
+        apiKey: 'YOUR_API_KEY',
+        // target: 'server',
+      },
+    ],
+  ],
+  // or
   modules: ['nuxt-microcms-module'],
-  microcms: {
-    options: {
-      serviceDomain: "YOUR_DOMAIN", // YOUR_DOMAIN is the XXXX part of XXXX.microcms.io
-      apiKey: "YOUR_API_KEY",
-    },
-    mode: process.env.NODE_ENV === 'production' ? 'server' : 'all',
+  microCMS: {
+    serviceDomain: 'YOUR_DOMAIN',
+    apiKey: 'YOUR_API_KEY',
+    // target: 'server',
   },
-};
+});
 ```
 
-#### options.serviceDomain
+#### serviceDomain
+
 `String`  
+Required.  
 Your service id, which is a subdomain of microCMS.
 
-#### options.apiKey
-`String`  
-Your api-key.  
-It can be obtained from the service settings. 
+#### apiKey
 
-#### mode
-`String` (can be `client` or `server` or `all`)  
-If defined, this module will be included only on the respective (client or server) side.
+`String`  
+Required.  
+Your api-key.  
+It can be obtained from the service settings.
+
+#### target
+
+`String` (can be `server` or `all`)  
+Default: `server`  
+By setting this value to `all`, the api-key you set will be included in the client-side code.  
+This will allow the client side to send requests to microCMS.  
+If you only want to send requests to microCMS at build time or from the server side, set this value to `server` or leave it blank.
 
 ### Hot to use
-This package uses [microcms-js-sdk](https://github.com/microcmsio/microcms-js-sdk).  
-You can get microCMS client (`$microcms`) from `context`.  
-Please see the URL below for details.  
-https://github.com/microcmsio/microcms-js-sdk#how-to-use
+
+We provide several custom hooks that can be used globally.  
+These are functions that internally wrap useFetch.
+
+```typescript
+type useMicroCMSGetList = <T>(
+  args: {
+    endpoint: string;
+    queries?: MicroCMSQueries;
+  },
+  fetchOptions?: FetchOptions
+) => Promise<AsyncData<MicroCMSListResponse<T>>>;
+type useMicroCMSGetListDetail = <T>(
+  args: {
+    endpoint: string;
+    contentId: string;
+    queries?: MicroCMSQueries;
+  },
+  fetchOptions?: FetchOptions
+) => Promise<AsyncData<T & MicroCMSListContent>>;
+type useMicroCMSGetObject = <T>(
+  args: {
+    endpoint: string;
+    queries?: MicroCMSQueries;
+  },
+  fetchOptions?: FetchOptions
+) => Promise<AsyncData<T & MicroCMSObjectContent>>;
+
+// FetchOptions is the same as the second argument option of useFetch provided by Nuxt3.
+// AsyncData is the return value of useFetch.
+// https://nuxt.com/docs/api/composables/use-fetch
+```
 
 ```vue
-// pages/index.vue
-
 <template>
   <ul>
-    <li v-for="content in contents" :key="content.id">
-      <nuxt-link :to="`/${content.id}`">
-        {{ content.title }}
-      </nuxt-link>
+    <li v-for="blog in blogs?.contents" :key="blog.id">
+      <NuxtLink :to="`/${blog.id}`">
+        <img
+          :src="blog.eyecatch.url"
+          :width="blog.eyecatch.width"
+          :height="blog.eyecatch.height"
+          alt=""
+        />
+        <span>
+          {{ blog.title }}
+        </span>
+      </NuxtLink>
     </li>
   </ul>
 </template>
 
-<script>
-export default {
-  async asyncData({ $microcms }) {
-    const data = await $microcms.get({
-      endpoint: 'your_endpoint',
-      queries: { limit: 20, filters: 'createdAt[greater_than]2021' },
-    });
-    return data;
-  }
-}
+<script setup lang="ts">
+import type { MicroCMSImage } from 'microcms-js-sdk';
+
+type Blog = {
+  title: string;
+  eyecatch: MicroCMSImage;
+};
+
+const { data: blogs } = await useMicroCMSGetList<Blog>({
+  endpoint: 'blogs',
+  queries: { fields: ['id', 'title', 'eyecatch'] },
+});
 </script>
 ```
 
