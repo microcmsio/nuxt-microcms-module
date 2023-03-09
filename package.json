@@ -39,7 +39,7 @@
     "dev:prepare": "nuxt-module-build --stub && nuxi prepare playground",
     "lint": "eslint .",
     "prepack": "nuxt-module-build",
-    "release": "nuxi prepare playground && yarn lint && yarn prepack && npm publish"
+    "release": "nuxi prepare playground && yarn lint && yarn prepack && npm publish --registry https://registry.npmjs.org"
   },
   "dependencies": {
     "@nuxt/kit": "^3.2.0",
