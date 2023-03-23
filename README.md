@@ -128,6 +128,37 @@ const { data: blogs } = await useMicroCMSGetList<Blog>({
 </script>
 ```
 
+#### Use reactive values for query parameters
+
+```vue
+<template>
+  <input type="text" v-model="queries.q" />
+</template>
+
+<script setup lang="ts">
+import type { MicroCMSImage } from 'microcms-js-sdk';
+
+type Blog = {
+  title: string;
+  eyecatch: MicroCMSImage;
+};
+
+const queries = reactive({
+  q: '',
+  fields: ['id', 'title', 'eyecatch'],
+});
+
+const { data: blogs, refresh } = await useMicroCMSGetList<Blog>({
+  endpoint: 'blogs',
+  queries,
+});
+
+watch(queries, () => {
+  refresh();
+});
+</script>
+```
+
 # LICENSE
 
 Apache-2.0

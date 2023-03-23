@@ -6,6 +6,7 @@ import {
 } from 'microcms-js-sdk';
 import { useFetch, useRuntimeConfig } from 'nuxt/app';
 import type { FetchOptions as _FetchOptions } from 'ofetch';
+import { computed } from 'vue';
 
 import { useMicroCMSUrl } from './useMicroCMSUrl';
 
@@ -41,13 +42,15 @@ const useMicroCMSGet = <T>(
   const baseURL = useMicroCMSUrl();
   const config = useRuntimeConfig();
 
-  const query: MicroCMSQueries | undefined = queries
-    ? {
-        ...queries,
-        fields: queries.fields?.toString(),
-        ids: queries.ids?.toString(),
-      }
-    : undefined;
+  const query = computed<MicroCMSQueries | undefined>(() =>
+    queries
+      ? {
+          ...queries,
+          fields: queries.fields?.toString(),
+          ids: queries.ids?.toString(),
+        }
+      : undefined
+  );
 
   return useFetch<T>(url, {
     ...fetchOptions,
