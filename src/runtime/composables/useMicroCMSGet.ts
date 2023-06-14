@@ -5,7 +5,7 @@ import {
   MicroCMSQueries,
 } from 'microcms-js-sdk';
 import { useFetch, useRuntimeConfig } from 'nuxt/app';
-import type { FetchOptions as _FetchOptions } from 'ofetch';
+import type { FetchError } from 'ofetch';
 import { computed } from 'vue';
 
 import { useMicroCMSUrl } from './useMicroCMSUrl';
@@ -31,13 +31,16 @@ type MicroCMSGetObjectArgs = {
   queries?: MicroCMSQueries;
 };
 
-type FetchOptions = Omit<_FetchOptions<'json'>, 'baseURL' | 'query' | 'method'>;
+type FetchOptions<T extends unknown> = Omit<
+  Parameters<typeof useFetch<T, FetchError, string, 'get'>>,
+  'baseURL' | 'query' | 'method'
+>[1];
 
 const method = 'GET';
 
 const useMicroCMSGet = <T>(
   { url, queries }: MicroCMSGetArgs,
-  fetchOptions: FetchOptions = {}
+  fetchOptions: FetchOptions<T> = {}
 ) => {
   const baseURL = useMicroCMSUrl();
   const config = useRuntimeConfig();
@@ -52,12 +55,14 @@ const useMicroCMSGet = <T>(
       : undefined
   );
 
-  return useFetch<T>(url, {
+  return useFetch<T, FetchError, string, 'get'>(url, {
     ...fetchOptions,
     baseURL,
     query,
     headers: {
-      'X-MICROCMS-API-KEY': config.microCMS?.apiKey,
+      'X-MICROCMS-API-KEY': config.microCMS
+        ? config.microCMS.apiKey
+        : config.public.microCMS.apiKey,
       ...fetchOptions.headers,
     },
     method,
@@ -66,7 +71,7 @@ const useMicroCMSGet = <T>(
 
 export const useMicroCMSGetList = <T>(
   { endpoint, queries }: MicroCMSGetListArgs,
-  fetchOptions: FetchOptions = {}
+  fetchOptions: FetchOptions<MicroCMSListResponse<T>> = {}
 ) => {
   return useMicroCMSGet<MicroCMSListResponse<T>>(
     { url: endpoint, queries },
@@ -76,7 +81,7 @@ export const useMicroCMSGetList = <T>(
 
 export const useMicroCMSGetListDetail = <T>(
   { endpoint, contentId, queries }: MicroCMSGetListDetailArgs,
-  fetchOptions: FetchOptions = {}
+  fetchOptions: FetchOptions<T & MicroCMSListContent> = {}
 ) => {
   return useMicroCMSGet<T & MicroCMSListContent>(
     { url: `${endpoint}/${contentId}`, queries },
@@ -86,7 +91,7 @@ export const useMicroCMSGetListDetail = <T>(
 
 export const useMicroCMSGetObject = <T>(
   { endpoint, queries }: MicroCMSGetObjectArgs,
-  fetchOptions: FetchOptions = {}
+  fetchOptions: FetchOptions<T & MicroCMSObjectContent> = {}
 ) => {
   return useMicroCMSGet<T & MicroCMSObjectContent>(
     { url: endpoint, queries },
