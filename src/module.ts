@@ -40,11 +40,12 @@ export default defineNuxtModule<ModuleOptions>({
       nuxt.options.runtimeConfig.public.microCMS.serviceDomain ||
       nuxt.options.runtimeConfig.microCMS.serviceDomain;
 
-    if (nuxt.options.dev || options.target === 'all') {
-      nuxt.options.runtimeConfig.public.microCMS = defu(
-        nuxt.options.runtimeConfig.public.microCMS,
-        nuxt.options.runtimeConfig.microCMS
-      );
+    nuxt.options.runtimeConfig.public.microCMS.apiKey =
+      nuxt.options.runtimeConfig.public.microCMS.apiKey ||
+      nuxt.options.runtimeConfig.microCMS.apiKey;
+
+    if (!nuxt.options.dev && options.target !== 'all') {
+      nuxt.options.runtimeConfig.public.microCMS.apiKey = undefined;
     }
 
     const { resolve } = createResolver(import.meta.url);
@@ -53,10 +54,3 @@ export default defineNuxtModule<ModuleOptions>({
     addImportsDir(resolve('./runtime/composables'));
   },
 });
-
-declare module '@nuxt/schema' {
-  interface RuntimeConfig {
-    serviceDomain: string;
-    apiKey: string;
-  }
-}
