@@ -37,7 +37,6 @@
     "dev": "nuxi dev playground",
     "dev:build": "nuxi build playground",
     "dev:prepare": "nuxt-module-build build --stub && nuxi prepare playground",
-    "build": "nuxt-module-build build && nuxi build playground",
     "lint": "eslint .",
     "prepublishOnly": "nuxi prepare playground && yarn lint && nuxt-module-build build"
   },
