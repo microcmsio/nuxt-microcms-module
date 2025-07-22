@@ -3,7 +3,7 @@
 [microCMS](https://microcms.io) integration for [Nuxt](https://nuxt.com/).
 
 Attention❗️  
-This module is intended for Nuxt version 3. If you are using version 2, please perform `npm install nuxt-microcms-module@2` and refer [here](https://github.com/microcmsio/nuxt-microcms-module/tree/v2#readme).
+This module is intended for Nuxt version 3 and 4. If you are using version 2, please perform `npm install nuxt-microcms-module@2` and refer [here](https://github.com/microcmsio/nuxt-microcms-module/tree/v2#readme).
 
 ## Getting Started
 

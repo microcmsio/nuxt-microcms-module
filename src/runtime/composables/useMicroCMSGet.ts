@@ -1,4 +1,4 @@
-import {
+import type {
   MicroCMSListResponse,
   MicroCMSListContent,
   MicroCMSObjectContent,
@@ -31,12 +31,12 @@ type MicroCMSGetObjectArgs = {
   queries?: MicroCMSQueries;
 };
 
-type FetchOptions<T extends unknown> = Omit<
+type FetchOptions<T = void> = Omit<
   Parameters<typeof useFetch<T, FetchError, string, 'get'>>,
   'baseURL' | 'query' | 'method'
 >[1];
 
-const method = 'GET';
+const method = 'get';
 
 const useMicroCMSGet = <T>(
   { url, queries }: MicroCMSGetArgs,
