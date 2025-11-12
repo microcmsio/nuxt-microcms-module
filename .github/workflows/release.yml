@@ -3,20 +3,22 @@ name: release
 on:
   push:
     tags:
-      - 'v*'
+      - "v*"
+
+permissions:
+  id-token: write # Required for OIDC
+  contents: read
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+      - uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444 # v5.0.0
         with:
-          node-version: '22.x'
-          registry-url: 'https://registry.npmjs.org/'
-          cache: 'yarn'
+          node-version: "24.x"
+          registry-url: "https://registry.npmjs.org/"
+          cache: "yarn"
       - run: yarn install --frozen-lockfile
       - name: release on npm
         run: npm publish
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
