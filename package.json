@@ -54,5 +54,8 @@
     "eslint": "^9.31.0",
     "eslint-config-prettier": "^10.1.5",
     "nuxt": "^4.0.0"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org"
   }
 }
