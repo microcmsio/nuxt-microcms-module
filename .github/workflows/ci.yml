@@ -1,4 +1,4 @@
-name: CI
+name: Check
 
 on:
   push:
@@ -12,7 +12,7 @@ env:
   NUXT_TELEMETRY_DISABLED: 1
 
 jobs:
-  build:
+  check:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
