@@ -3479,11 +3479,6 @@ eslint-config-flat-gitignore@^2.3.0:
   dependencies:
     "@eslint/compat" "^2.1.0"
 
-eslint-config-prettier@^10.1.8:
-  version "10.1.8"
-  resolved "https://npm.flatt.tech/eslint-config-prettier/-/eslint-config-prettier-10.1.8.tgz#15734ce4af8c2778cc32f0b01b37b0b5cd1ecb97"
-  integrity sha512-82GZUjRS0p/jganf6q1rEO25VSoHH0hKPCTrgillPjdI/3bgBhAE1QzHrHTizjpRvy6pGAvKjDJtk2pF9NDq8w==
-
 eslint-flat-config-utils@^3.2.0:
   version "3.2.0"
   resolved "https://npm.flatt.tech/eslint-flat-config-utils/-/eslint-flat-config-utils-3.2.0.tgz#39ea0443d395e4aa6a965af88063e617e6978b29"
