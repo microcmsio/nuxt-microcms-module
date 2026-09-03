@@ -50,7 +50,7 @@
     "@nuxt/module-builder": "^1.0.3",
     "@nuxt/schema": "^4.5.0",
     "@nuxt/test-utils": "^4.0.0",
-    "@types/node": "^24.0.14",
+    "@types/node": "^24.13.3",
     "eslint": "^10.0.0",
     "eslint-config-prettier": "^10.1.5",
     "nuxt": "^4.5.0",
