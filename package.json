@@ -51,7 +51,7 @@
     "@nuxt/schema": "^4.5.0",
     "@nuxt/test-utils": "^4.3.2",
     "@types/node": "^24.13.3",
-    "eslint": "^10.0.0",
+    "eslint": "^10.11.0",
     "nuxt": "^4.5.0",
     "typescript": "^5.9.3"
   },
