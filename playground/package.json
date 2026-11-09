@@ -1,4 +1,5 @@
 {
   "private": true,
-  "name": "nuxt-microcms-module-playground"
+  "name": "nuxt-microcms-module-playground",
+  "type": "module"
 }
