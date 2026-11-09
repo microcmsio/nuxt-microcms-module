@@ -8,6 +8,9 @@ on:
     branches:
       - main
 
+permissions:
+  contents: read
+
 env:
   NUXT_TELEMETRY_DISABLED: 1
 
@@ -26,13 +29,12 @@ jobs:
         run: npm install -g npm@12.2.1 --engine-strict=false
       - name: Get npm cache directory
         id: npm-cache
-        run: echo "dir=$(npm config get cache)" >> "$GITHUB_OUTPUT"
+        run: echo "dir=$(npm config get cache)/_cacache" >> "$GITHUB_OUTPUT"
       - uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         with:
           path: ${{ steps.npm-cache.outputs.dir }}
+          # Exact key only: avoid restore-keys fallback that can reuse an unrelated lockfile's cache.
           key: npm-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
-          restore-keys: |
-            npm-${{ runner.os }}-
       - run: npm ci
       - run: npm run dev:prepare
       - run: npm run lint
