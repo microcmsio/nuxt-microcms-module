@@ -1035,7 +1035,7 @@
     vue-bundle-renderer "^2.4.0"
     vue-devtools-stub "^0.1.0"
 
-"@nuxt/schema@4.6.4", "@nuxt/schema@^4.6.3":
+"@nuxt/schema@4.6.4", "@nuxt/schema@^4.6.4":
   version "4.6.4"
   resolved "https://npm.flatt.tech/@nuxt/schema/-/schema-4.6.4.tgz#6d7fb9b56a72df33dc031c39cb82d954c07aff66"
   integrity sha512-IZZpHY3bJ4RGDjNnlNGfN6VDIt4tAkSUc/Hg6KMZrqe6wjvWZn7hAQ9SiFnro7Rqqb37R23bBamytVXZrOtHAQ==
@@ -4328,7 +4328,7 @@ nth-check@^2.1.1:
   dependencies:
     boolbase "^1.0.0"
 
-nuxt@^4.6.3:
+nuxt@^4.6.4:
   version "4.6.4"
   resolved "https://npm.flatt.tech/nuxt/-/nuxt-4.6.4.tgz#935dde66a85a66f027779ecd2a08fc9c9e855942"
   integrity sha512-nxeBPQp64cw6VmxFdrShRaMC7wln0UADaD7IB59o5LlP5rZqH8ZWbzONRralQksqj62UXowJSSaDGY+94XM+Gg==
