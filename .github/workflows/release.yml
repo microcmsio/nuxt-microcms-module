@@ -22,9 +22,11 @@ jobs:
           persist-credentials: false
       - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
-          node-version: "24.x"
+          node-version-file: ".tool-versions"
           registry-url: "https://registry.npmjs.org/"
           package-manager-cache: false
-      - run: yarn install --frozen-lockfile
+      - name: Setup npm 12
+        run: npm install -g npm@12.2.1 --engine-strict=false
+      - run: npm ci
       - name: release on npm
         run: npm publish
