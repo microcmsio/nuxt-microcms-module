@@ -64,6 +64,6 @@
     "esbuild@0.28.2": true
   },
   "engines": {
-    "node": "26.x"
+    "node": ">=18.0.0"
   }
 }
