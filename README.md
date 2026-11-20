@@ -94,6 +94,8 @@ type useMicroCMSGetObject = <T>(
 // https://nuxt.com/docs/api/composables/use-fetch
 ```
 
+`endpoint` and `contentId` must consist only of letters, digits, `-` and `_` (the characters microCMS allows for them). Any other value, such as one containing `/`, `\`, `.` or `?`, throws an error and no request is sent.
+
 ```vue
 <template>
   <ul>

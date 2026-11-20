@@ -11,7 +11,7 @@ import { computed } from 'vue';
 import { useMicroCMSUrl } from './useMicroCMSUrl';
 
 type MicroCMSGetArgs = {
-  url: string;
+  segments: string[];
   queries?: MicroCMSQueries;
 };
 
@@ -38,10 +38,27 @@ type FetchOptions<T = void> = Omit<
 
 const method = 'get';
 
+// microCMS endpoints and content IDs only allow these characters, so anything
+// else (slashes, backslashes, dots, `?`, `#`, `%`) cannot address the intended resource.
+const PATH_SEGMENT = /^[A-Za-z0-9_-]+$/;
+
+const toPath = (segments: unknown[]) =>
+  segments
+    .map((segment) => {
+      if (typeof segment !== 'string' || !PATH_SEGMENT.test(segment)) {
+        throw new Error(
+          'Invalid microCMS endpoint or contentId: only letters, digits, "-" and "_" are allowed'
+        );
+      }
+      return encodeURIComponent(segment);
+    })
+    .join('/');
+
 const useMicroCMSGet = <T>(
-  { url, queries }: MicroCMSGetArgs,
+  { segments, queries }: MicroCMSGetArgs,
   fetchOptions: FetchOptions<T> = {}
 ) => {
+  const url = toPath(segments);
   const baseURL = useMicroCMSUrl();
   const config = useRuntimeConfig();
 
@@ -74,7 +91,7 @@ export const useMicroCMSGetList = <T>(
   fetchOptions: FetchOptions<MicroCMSListResponse<T>> = {}
 ) => {
   return useMicroCMSGet<MicroCMSListResponse<T>>(
-    { url: endpoint, queries },
+    { segments: [endpoint], queries },
     fetchOptions
   );
 };
@@ -84,7 +101,7 @@ export const useMicroCMSGetListDetail = <T>(
   fetchOptions: FetchOptions<T & MicroCMSListContent> = {}
 ) => {
   return useMicroCMSGet<T & MicroCMSListContent>(
-    { url: `${endpoint}/${contentId}`, queries },
+    { segments: [endpoint, contentId], queries },
     fetchOptions
   );
 };
@@ -94,7 +111,7 @@ export const useMicroCMSGetObject = <T>(
   fetchOptions: FetchOptions<T & MicroCMSObjectContent> = {}
 ) => {
   return useMicroCMSGet<T & MicroCMSObjectContent>(
-    { url: endpoint, queries },
+    { segments: [endpoint], queries },
     fetchOptions
   );
 };
